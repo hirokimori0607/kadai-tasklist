@@ -23,8 +23,8 @@
                 </div>
             </nav>
         </header>
-        
         <div class="container">
+            @include('tasks.error_tasks')
             @yield('content')
         </div>
         <div class="collapse navbar-collapse" id="nav-bar">
