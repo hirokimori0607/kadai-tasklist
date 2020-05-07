@@ -27,5 +27,4 @@
     @endif
     
         {!! link_to_route('tasks.create', '新規タスク', [], ['class' => 'btn btn-primary']) !!}
-        {!! link_to_route('signup.get', 'ユーザー登録', [], ['class' => 'btn btn-primary']) !!}
 @endsection
