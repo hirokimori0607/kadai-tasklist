@@ -53,16 +53,21 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+        
+        //dd($request->user_id);
         $this->validate($request, [
             'status' => 'required|max:10',
             'content' => 'required|max:191',
         ]);
         $task = new Task;
+        $user = \Auth::id();
+        //$task->user_id = $request->user_id;
+        $task->user_id = $request->user()->id;
         $task->status = $request->status;
         $task->content = $request->content;
         $task->save();
 
-        return redirect('/');
+        return back();
     }
 
     /**
@@ -104,11 +109,16 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        //dd($request->user_id);
         $this->validate($request, [
             'status' => 'required|max:10',
             'content' => 'required|max:191',
         ]);
         $task = Task::find($id);
+        $user = \Auth::id();
+        //$task->user_id = $request->user_id;
+        $task->user_id = $request->user()->id;
         $task->status = $request->status;
         $task->content = $request->content;
         $task->save();
@@ -125,8 +135,10 @@ class TasksController extends Controller
     public function destroy($id)
     {
         $task = Task::find($id);
-        $task->delete();
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
+        }
 
-        return redirect('/');
+        return back();
     }
 }
