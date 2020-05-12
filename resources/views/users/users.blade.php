@@ -10,6 +10,9 @@
                     <div>
                         <p>{!! link_to_route('users.show', 'View profile', ['id' => $user->id]) !!}</p>
                     </div>
+                    @if (count($tasks) > 0)
+                        @include('tasks.tasks', ['tasks' => $tasks])
+                    @endif
                 </div>
             </li>
         @endforeach

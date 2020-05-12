@@ -78,7 +78,7 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('view', $task); // 追加
+        //$this->authorize('view', $task); // 追加
         $task = Task::find($id);
 
         return view('tasks.show', [
@@ -116,7 +116,7 @@ class TasksController extends Controller
             'status' => 'required|max:10',
             'content' => 'required|max:191',
         ]);
-        $this->authorize('view', $task); // 追加
+        //$this->authorize('view', $task); // 追加
         $task = Task::find($id);
         $user = \Auth::id();
         //$task->user_id = $request->user_id;
