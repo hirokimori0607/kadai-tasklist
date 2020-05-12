@@ -142,8 +142,10 @@ class TasksController extends Controller
     {
         //$this->authorize('view', $task); // 追加
         $task = Task::find($id);
-        
-        if (\Auth::id() === $task->user_id) {
+        if (\Auth::id() !== $task->user_id){
+            return redirect('/');
+        }
+        elseif (\Auth::id() === $task->user_id) {
             $task->delete();
         }
 
