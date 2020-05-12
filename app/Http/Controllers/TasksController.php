@@ -136,7 +136,7 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('view', $task); // 追加
+        //$this->authorize('view', $task); // 追加
         $task = Task::find($id);
         
         if (\Auth::id() === $task->user_id) {
